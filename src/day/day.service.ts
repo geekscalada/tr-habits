@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ftruncate } from 'fs';
 import { Model } from 'mongoose';
 import { CreateDayDto } from './dto/create-day.dto';
 import { UpdateDayDto } from './dto/update-day.dto';

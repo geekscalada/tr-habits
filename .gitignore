@@ -4,6 +4,7 @@
 
 #Private
 /private*
+.env
 
 # compiled output
 /dist
