@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription('Backend for APP')
     .setVersion('1.0')
     .addTag('Tag')
+    .addBearerAuth() // This is for use Bearer token in Swagger
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
@@ -21,3 +22,6 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+
+
+//TODO: Make imporvements into controller get day/id to get the day or user that is loginIn

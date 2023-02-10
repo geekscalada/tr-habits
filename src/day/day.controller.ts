@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/jwt-auth/auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Console } from 'console';
 import { DayService } from './day.service';
 import { CreateDayDto } from './dto/create-day.dto';
@@ -20,9 +21,14 @@ export class DayController {
   findAll() {
     return this.dayService.findAll();
   }
-
+  
+  // This decorator makes controller to get bearer token from swagger
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param() id: string, @Body() body: any) {
+    
+    
     try {
       //TODO: this validation of another way
       if (/"+/g.test(id)) {           

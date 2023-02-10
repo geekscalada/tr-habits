@@ -11,6 +11,27 @@ export class UserService {
   constructor (@InjectModel(User.name) private userModel : Model<UserDocument> )  {
 
   }
+
+  async findIfRegister(email: string) {    
+    const findUser = await this.userModel.findOne({email})
+    
+    console.log(findUser);
+
+    return findUser;
+
+  }
+
+  async createUser(createUserDto: CreateUserDto) {
+
+    console.log("createUser");
+    const createdUser = await this.userModel.create(createUserDto);
+
+    return createdUser;
+
+  }
+
+  
+
       
   async login(createUserDto: CreateUserDto) {
 

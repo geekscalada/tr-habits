@@ -8,52 +8,58 @@ import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { LoginAuthDto } from 'src/user/dto/loginAuth.dto';
+import { UserService } from 'src/user/user.service';
 
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-    private readonly _jwtService: JwtService    
+    // @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    private readonly _jwtService: JwtService,
+    private readonly userService: UserService    
     
     ) {
 
-  }
+  }  
 
-//   async register(userObject: RegisterAuthDto) {
-//     const {password} =  userObject;
-//     const passHashed = await hash(password, 10) //salt
-    
-//     // TODO: generate salt randomly for ejample:
-//     // let mySalt = generateSalt(8);
-//     // await hash(password, mySalt)
 
-//     userObject = {...userObject, password:passHashed};
+  async loginGoogle(userObjectLogin: LoginAuthDto) {
 
-//     return this.userModel.create(userObject);    
-    
-//   }
-
-  async login(userObjectLogin: LoginAuthDto) {
-    
-    const {email, name} = userObjectLogin
-
-    // Sugar sintax email: email on the .findOne
-    const findUser = await this.userModel.findOne({email})
+    console.log("us" ,userObjectLogin);
     
 
-    // TODO: Create a user when user doesn't exist
-    if (!findUser) throw new HttpException('USER_NOT_FOUND', 404)   
-   
+    const {email, firstName } = userObjectLogin
+    
+    const findUser = await this.userService.findIfRegister(email);
+
+    let userId = findUser._id;
+
+    // TODO: Make secret key more secure
+    // Make secret global through module
+    const secretKey = 'SECRET_JWT'    
+       
 
     
-    const payload = {email, name}
+    if (!findUser) {
+      const createdUser = await this.userService.createUser(userObjectLogin);
+      console.log(createdUser);
+      userId = createdUser._id; 
+
+    }     
+    
+    const payload = { email, firstName, userId }
+
+
 
     // We sign payload
-    // Automatically it adds iat (time of creation) and time of expiration
-    const accesToken = this._jwtService.sign(payload)    
+    // Automatically it adds iat (time of creation) and time of expiration   
+    
+    const accesToken = this._jwtService.sign(payload, { secret: secretKey });   
 
-    return accesToken;
+    return {"accesToken" : accesToken}
   }
+
+
+
 }

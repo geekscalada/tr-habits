@@ -2,7 +2,7 @@
 export class LoginAuthDto {
 
     email: string;
-    name: string;
+    firstName: string;
 
 }
  
