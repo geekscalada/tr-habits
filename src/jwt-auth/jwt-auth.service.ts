@@ -33,11 +33,7 @@ export class AuthService {
     
     const findUser = await this.userService.findIfRegister(email);
 
-    let userId = findUser._id;
-
-    // TODO: Make secret key more secure
-    // Make secret global through module
-    const secretKey = 'SECRET_JWT'    
+    let userId = findUser._id;     
        
 
     
@@ -55,9 +51,11 @@ export class AuthService {
     // We sign payload
     // Automatically it adds iat (time of creation) and time of expiration   
     
-    const accesToken = this._jwtService.sign(payload, { secret: secretKey });   
+    const accesToken = this._jwtService.sign(payload)   
 
-    return {"accesToken" : accesToken}
+    console.log("este es mi access token", accesToken)
+
+    return {accesToken}
   }
 
 

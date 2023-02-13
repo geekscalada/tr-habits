@@ -16,6 +16,7 @@ export class GoogleAuthService {
     ) {}
   
   googleLogin(req) {
+    
     if (!req.user) {
       return 'No user from google'
     } 

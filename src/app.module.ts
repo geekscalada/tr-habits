@@ -6,7 +6,7 @@ import { dbUsername, dbPassword, IP } from 'privateVar/const';
 import { HabitModule } from './habit/habit.module';
 import { DayModule } from './day/day.module';
 import { GoogleAuthModule } from './google-auth/google-auth.module';
-import { JwtAuthModule } from './jwt-auth/jwt-auth.module';
+
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport'; 
 import { Injectable } from '@nestjs/common';
-//import { jwtConstant } from './jwt.constant';
+import { JWT_SECRET } from 'privateVar/const';
 
 
 @Injectable()
@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
 
       // Seed to know if the token is created by the server
-      secretOrKey: 'SECRET_JWT'
+      secretOrKey: JWT_SECRET
     });
     
   }
