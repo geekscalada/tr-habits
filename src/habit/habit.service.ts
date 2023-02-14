@@ -15,12 +15,14 @@ export class HabitService {
   
   async create(createHabitDto: CreateHabitDto) {
 
+    console.log(createHabitDto);
+
     const createdHabit = await this.habitModel.create(createHabitDto)
     return `This action adds a new Habit, reference ${createdHabit}`;
   }
 
-  async findAll() {
-    const getHabits = await this.habitModel.find();
+  async findAll(userId) {
+    const getHabits = await this.habitModel.find({user : userId});    
     return getHabits;
   }
 

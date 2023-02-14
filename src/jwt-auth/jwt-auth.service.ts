@@ -25,16 +25,14 @@ export class AuthService {
 
 
   async loginGoogle(userObjectLogin: LoginAuthDto) {
-
-    console.log("us" ,userObjectLogin);
+    
     
 
     const {email, firstName } = userObjectLogin
     
     const findUser = await this.userService.findIfRegister(email);
-
-    let userId = findUser._id;     
-       
+        
+    let userId = null;  
 
     
     if (!findUser) {
@@ -42,7 +40,9 @@ export class AuthService {
       console.log(createdUser);
       userId = createdUser._id; 
 
-    }     
+    } else {
+      userId = findUser._id; 
+    }    
     
     const payload = { email, firstName, userId }
 
@@ -51,13 +51,8 @@ export class AuthService {
     // We sign payload
     // Automatically it adds iat (time of creation) and time of expiration   
     
-    const accesToken = this._jwtService.sign(payload)   
-
-    console.log("este es mi access token", accesToken)
+    const accesToken = this._jwtService.sign(payload)     
 
     return {accesToken}
   }
-
-
-
 }

@@ -24,4 +24,5 @@ async function bootstrap() {
 bootstrap();
 
 
-//TODO: Make imporvements into controller get day/id to get the day or user that is loginIn
+// TODO: Make improvements into controller get day/id to get the day or user that is loginIn
+// TODO: implement class Request for better practices.

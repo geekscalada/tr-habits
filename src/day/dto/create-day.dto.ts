@@ -13,7 +13,7 @@ export class CreateDayDto {
     @ApiProperty()
     @IsNotEmpty()
     @IsMongoId({each: true})
-    completedHabits: string[];
+    completedHabits: string[];    
 
 }
 

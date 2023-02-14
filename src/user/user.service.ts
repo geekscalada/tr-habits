@@ -13,6 +13,7 @@ export class UserService {
   }
 
   async findIfRegister(email: string) {    
+    
     const findUser = await this.userModel.findOne({email})
     
     console.log(findUser);

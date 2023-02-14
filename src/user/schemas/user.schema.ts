@@ -1,6 +1,7 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from "mongoose";
+import { Habit } from 'src/habit/schemas/habit.schema';
 
 
 export type UserDocument = HydratedDocument<User>;
@@ -13,7 +14,11 @@ export class User {
     name: String;
 
     @Prop()
-    email: String;    
+    email: String;
+    
+    // @Prop()
+    // habits: Habit[];
+    //habits: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Habit' }];
 
 }
 
