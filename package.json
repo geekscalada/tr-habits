@@ -30,12 +30,14 @@
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.3",
     "google-auth-library": "^8.7.0",
+    "ionic2-calendar": "^1.0.1",
     "mongoose": "^6.9.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
+    
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

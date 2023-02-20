@@ -1,0 +1,59 @@
+<!-- 
+
+<div class="wrapper-calendar">
+  <div class="header-calendar">
+		<div>
+			<button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+		</div>
+		<h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+		<div>
+			<button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+		</div>
+	</div>
+
+
+      <ion-grid [fixed]="true" class="day-name">
+        <ion-row>
+          <ion-col *ngFor="let day of week">
+            {{day | slice:0:1}}
+          </ion-col>
+
+        </ion-row>
+        <ion-row size="1.7" *ngFor="let day of monthSelect | slice:0:((monthSelect!.length/7)+1)">
+          <ion-col *ngFor="let cell of monthSelect!.slice(((day.value*7)-7), (day.value*7))" size="1">
+            {{cell.value}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div> -->
+ 
+
+
+
+
+    <div class="wrapper-calendar">
+      <div class="header-calendar">
+        <div>
+          <button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+        </div>
+        <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+        <div>
+          <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+        </div>
+      </div>
+      <ol>
+        <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+    
+            <li (click)="clickDay(day.value)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+             [style.color]="day?.isToday ? 'red' : 'white'"
+             *ngFor="let day of monthSelect;let first = first">
+          <span>{{day?.value}}</span>
+        </li>
+      </ol>
+    </div>
+    
+    <hr>
+    <div>
+      Fecha: {{dateValue | date}}
+    </div>
