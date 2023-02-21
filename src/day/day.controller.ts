@@ -14,13 +14,13 @@ export class DayController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createDayDto: CreateDayDto, @Req() req : any) {
-    
+  create(@Body() createDayDto: CreateDayDto, @Req() req: any) {
+
     const day = {
       ...createDayDto,
       user: req.user.userId
     }
-    
+
     return this.dayService.create(day);
   }
 
@@ -28,20 +28,31 @@ export class DayController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll(@Req() req : any) {
+  findAll(@Req() req: any) {
 
     const userId = req.user.userId;
     return this.dayService.findAll(userId);
 
   }
-  
+
+
+  //TODO: make this method protected by token and it
+  // returns only habits by user
+  @Get('getbymonth/:month')
+  findByMonth(@Param('month') month: string, @Req() req: any) {
+
+    //return this.habitService.findByMonth(req.user.userId, month);
+
+    return this.dayService.findByMonth(month);
+  }
+
   // This decorator makes controller to get bearer token from swagger
   // @ApiBearerAuth()
   // @UseGuards(JwtAuthGuard)
   // @Get(':id')
   // findOne(@Param('id') id: string, @Body() body: any) {
-    
-    
+
+
   //   try {
   //     //TODO: this validation of another way
   //     if (/"+/g.test(id)) {           
@@ -56,11 +67,11 @@ export class DayController {
   //   }
   // }
 
-  // TODO:
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateDayDto: UpdateDayDto) {
-  //   return this.dayService.update(+id, updateDayDto);
-  // }
+  //TODO:
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateDayDto: UpdateDayDto) {
+    return this.dayService.update(+id, updateDayDto);
+  }
 
   // TODO:
   // @Delete(':id')

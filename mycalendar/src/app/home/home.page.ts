@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment'
+import { GetHabitsService } from './get-habits.service';
 
 @Component({
   selector: 'app-root',
@@ -26,9 +27,12 @@ export class HomePage implements OnInit {
   
   //Today
   dateValue: any;
+
+  //TODO: Type this variable better
+  monthHabits: any[] | undefined;
  
 
-  constructor() {
+  constructor( private _getHabitsService: GetHabitsService) {
 
   }
 
@@ -52,10 +56,8 @@ export class HomePage implements OnInit {
       a = parseInt(a) + 1;
       const dayObject = moment(`${year}-${month}-${a}`); 
 
-      let myMoment= moment(new Date());
-
-      const checkIfIsToday = Math.round(dayObject.diff(myMoment, 'days', true)) == -1         
-      
+      let today = moment(new Date());
+      const checkIfIsToday = Math.round(dayObject.diff(today, 'days', true)) == -1    
       
       return {
         name: dayObject.format("dddd"),
@@ -83,7 +85,6 @@ export class HomePage implements OnInit {
 
   clickDay(dayValue :any) {
 
-
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${dayValue}`
     const objectDate = moment(parse)
@@ -92,8 +93,27 @@ export class HomePage implements OnInit {
     console.log('monthSelect', this.monthSelect);
     console.log('dateSelect', this.dateSelect);
     console.log('dateValue', this.dateValue);
+
+    this.getMonthHabits();
+    
   }
 
-
+  //TODO: type this return function
+  getMonthHabits(): any  {
+    this._getHabitsService.getHabitsByMonth(this.dateValue.format('MM')).subscribe(
+      {
+        next: (response: any) => {
+          return this.monthHabits = response;
+        },
+        error: (error: any) => {
+          console.error(`[ERROR]: Something wrong happend: ${error}`);          ;
+        },
+        complete: () => {
+          console.info('Complete');
+          console.log('monthHabits', this.monthHabits);          
+        }
+      }
+    )    
+  }
 
 }

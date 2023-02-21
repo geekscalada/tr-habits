@@ -54,6 +54,20 @@ export class DayService {
    
   }
 
+
+  async findByMonth(month : string) {    
+    
+    const monthHabits = await this.dayModel
+      .find({ "$expr": { "$eq": [{ "$month": "$time" }, month] }});
+        
+    return monthHabits;
+
+
+  }
+
+
+
+
 // ------------------------------------------
 // ------------------------------------------
 

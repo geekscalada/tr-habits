@@ -4,8 +4,19 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
+
+  //TODO: Make a more strict CORS configuration
+  const corsConfiguration = {
+
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+
+  }
+
   const app = await NestFactory.create(AppModule);
-  
+
   const config = new DocumentBuilder()
     .setTitle('Tracker habits API')
     .setDescription('Backend for APP')
@@ -15,12 +26,15 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  
+
   // You need to declare use of PIPES for all app (for example for use in DTO)
-  app.useGlobalPipes(new ValidationPipe());
-      
+  app
+    .useGlobalPipes(new ValidationPipe())
+    .enableCors(corsConfiguration);
+
   await app.listen(3000);
 }
+
 bootstrap();
 
 

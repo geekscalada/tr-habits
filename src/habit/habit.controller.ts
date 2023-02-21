@@ -33,6 +33,8 @@ export class HabitController {
     return this.habitService.findAll(req.user.userId);
   }
 
+
+
   //TODO: develop (all) this methods
   // @Get(':id')
   // findOne(@Param('id') id: string) {
