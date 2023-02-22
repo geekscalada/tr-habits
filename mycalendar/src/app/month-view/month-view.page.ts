@@ -1,15 +1,15 @@
-// https://github.com/leifermendez/example-calendar
 
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment'
 import { GetHabitsService } from './get-habits.service';
 
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss']
+  selector: 'app-month-view',
+  templateUrl: './month-view.page.html',
+  styleUrls: ['./month-view.page.scss'],
 })
-export class HomePage implements OnInit {
+export class MonthViewPage implements OnInit {
 
   week: any = [
     "Lunes",
@@ -37,6 +37,8 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log("hola")
     
     const today = new Date();    
     this.getDaysFromDate(today.getMonth()+1, today.getFullYear());
@@ -115,5 +117,7 @@ export class HomePage implements OnInit {
       }
     )    
   }
+
+
 
 }

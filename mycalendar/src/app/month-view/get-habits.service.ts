@@ -1,8 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +14,7 @@ export class GetHabitsService {
 
 
   //TODO: clean this code
+  //TODO: Create interceptor to add token to headers
   getHabitsByMonth(month : number): Observable<any>{    
 
       return this._http.get('http://localhost:3000/day/getbymonth/' + month
@@ -33,6 +32,3 @@ export class GetHabitsService {
 
 
 }
-
-
-
