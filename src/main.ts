@@ -30,7 +30,7 @@ async function bootstrap() {
   // You need to declare use of PIPES for all app (for example for use in DTO)
   app
     .useGlobalPipes(new ValidationPipe())
-    .enableCors(corsConfiguration);
+    .enableCors();
 
   await app.listen(3000);
 }

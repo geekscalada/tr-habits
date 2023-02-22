@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'month',
     loadChildren: () => import('./month-view/month-view.module').then( m => m.MonthViewPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login-page/login-page.module').then( m => m.LoginPagePageModule)
+  },
 ];
 
 @NgModule({

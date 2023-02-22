@@ -11,10 +11,17 @@ import { MonthViewPageModule } from './month-view/month-view.module';
 
 
 
+
+
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, MonthViewPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
+    MonthViewPageModule,
+    
+  
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

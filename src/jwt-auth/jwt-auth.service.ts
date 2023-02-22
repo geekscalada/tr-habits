@@ -24,9 +24,7 @@ export class AuthService {
   }  
 
 
-  async loginGoogle(userObjectLogin: LoginAuthDto) {
-    
-    
+  async loginGoogle(userObjectLogin: LoginAuthDto) {   
 
     const {email, firstName } = userObjectLogin
     
@@ -47,12 +45,11 @@ export class AuthService {
     const payload = { email, firstName, userId }
 
 
-
     // We sign payload
     // Automatically it adds iat (time of creation) and time of expiration   
     
     const accesToken = this._jwtService.sign(payload)     
 
-    return {accesToken}
+    //return {accesToken}
   }
 }
