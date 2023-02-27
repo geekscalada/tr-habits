@@ -48,8 +48,8 @@ export class AuthService {
     // We sign payload
     // Automatically it adds iat (time of creation) and time of expiration   
     
-    const accesToken = this._jwtService.sign(payload)     
+    const accessToken = this._jwtService.sign(payload)    
 
-    //return {accesToken}
+    return {accessToken}
   }
 }

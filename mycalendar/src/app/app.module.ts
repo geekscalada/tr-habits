@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MonthViewPageModule } from './month-view/month-view.module';
+import { LoginPagePageModule } from './login-page/login-page.module';
+import { SocialLoginModule } from '@abacritt/angularx-social-login';
 
 
 
@@ -17,11 +19,17 @@ import { MonthViewPageModule } from './month-view/month-view.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
-    MonthViewPageModule,
+    MonthViewPageModule
+    
+   
+    
     
   
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

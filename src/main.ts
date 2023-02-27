@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
 
@@ -30,7 +31,14 @@ async function bootstrap() {
   // You need to declare use of PIPES for all app (for example for use in DTO)
   app
     .useGlobalPipes(new ValidationPipe())
-    .enableCors();
+    .enableCors(
+      corsConfiguration
+    )
+
+
+
+  // Configurar middleware de cookie-parser
+  app.use(cookieParser());
 
   await app.listen(3000);
 }

@@ -15,14 +15,21 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
+import { HttpClientModule } from '@angular/common/http';
+
+
+//Todo: Make .env file to store the keys
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPagePageRoutingModule,
-    SocialLoginModule
+    LoginPagePageRoutingModule,    
+    HttpClientModule,
+    SocialLoginModule,
+    
+    
   ],
   declarations: [LoginPagePage],
   providers: [
@@ -41,11 +48,14 @@ import {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('953916501050-5cag9hqvee7kg57trclmne950he6bmho.apps.googleusercontent.com')
           }
+          
+          
         ],
         onError: (err) => {
           console.error(err);
         }
-      } as SocialAuthServiceConfig,
+      } as SocialAuthServiceConfig
+      
     }
   ]
 })
