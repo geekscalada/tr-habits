@@ -15,11 +15,15 @@ import { SocialLoginModule } from '@abacritt/angularx-social-login';
 
 
 
+//TODO: Arrange imports to import only module
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
-    MonthViewPageModule
+    MonthViewPageModule,
+    // LoginPagePageModule
+    
+    
     
    
     
@@ -27,6 +31,7 @@ import { SocialLoginModule } from '@abacritt/angularx-social-login';
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    
     
   
   ],

@@ -18,7 +18,8 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 
 
-//Todo: Make .env file to store the keys
+// fTodo: Make .env file to store the keys
+// TODO: Clean FB keys
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     LoginPagePageRoutingModule,    
     HttpClientModule,
-    SocialLoginModule,
+    SocialLoginModule
+    
     
     
   ],
@@ -48,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('953916501050-5cag9hqvee7kg57trclmne950he6bmho.apps.googleusercontent.com')
           }
+      
           
           
         ],

@@ -1,13 +1,13 @@
-import { GoogleLoginProvider, SocialAuthService } from "@abacritt/angularx-social-login";
+import { SocialAuthService } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { Component, OnInit } from "@angular/core";
 
 import { SocialUser } from "@abacritt/angularx-social-login";
 import { HttpClient } from "@angular/common/http";
-import { LoginGoogleService } from "./login-google.service";
 
-import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from "@angular/router";
+
+
 
 
 @Component({
@@ -55,14 +55,18 @@ export class LoginPagePage implements OnInit {
       //TODO: Separate this in a detached function
       this._http.post('http://localhost:3000/google-tojwt', { idToken }).subscribe((data : any) => {
        
-      console.log("data", data)
+      //TODO: refactorize this code to do exceptins wel handled
+      if (!data['accessToken']) {         
+        return new Error("No token provided");
+        
+      }
            
       // Set the token in the local storage
       localStorage.setItem('token', JSON.stringify(data['accessToken']));
 
       
       // Redirect to the home page
-      this._router.navigate(['month']);
+      return this._router.navigate(['month']);
       
       })
     });

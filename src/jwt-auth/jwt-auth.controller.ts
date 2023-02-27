@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './jwt-auth.service';
 import { OAuth2Client } from 'google-auth-library';
 import {GOOGLE_CLIENT_ID} from 'privateVar/const'
@@ -25,8 +24,7 @@ export class JwtAuthController {
           audience: GOOGLE_CLIENT_ID,
         });
   
-        const payload = ticket.getPayload();
-        const userId = payload.sub;
+        const payload = ticket.getPayload();        
 
         const userDto : LoginAuthDto = { 
           email: payload.email,

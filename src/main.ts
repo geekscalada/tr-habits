@@ -46,5 +46,10 @@ async function bootstrap() {
 bootstrap();
 
 
+// TODO: Do guards to implement login and logout
+// TODO: Generate refresh token
+// TODO: Generate good front-end for the month view and thinking
+// about data wich has to be viewed (and how)
 // TODO: Make improvements into controller get day/id to get the day or user that is loginIn
 // TODO: implement class Request for better practices.
+

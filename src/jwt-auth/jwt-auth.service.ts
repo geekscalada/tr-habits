@@ -1,12 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-// import { LoginAuthDto } from './dto/login-auth-dto/login-auth-dto'; 
-// import { RegisterAuthDto } from './dto/register-auth-dto/register-auth-dto';
-// import { hash, compare } from 'bcrypt'
-// import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from 'src/user/schemas/user.schema';
-import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
-import { InjectModel } from '@nestjs/mongoose';
 import { LoginAuthDto } from 'src/user/dto/loginAuth.dto';
 import { UserService } from 'src/user/user.service';
 
@@ -22,7 +15,6 @@ export class AuthService {
     ) {
 
   }  
-
 
   async loginGoogle(userObjectLogin: LoginAuthDto) {   
 
@@ -43,7 +35,6 @@ export class AuthService {
     }    
     
     const payload = { email, firstName, userId }
-
 
     // We sign payload
     // Automatically it adds iat (time of creation) and time of expiration   
